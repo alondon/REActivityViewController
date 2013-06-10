@@ -24,5 +24,5 @@ Pod::Spec.new do |s|
   s.dependency 'REComposeViewController', '~> 2.1.1'
   s.dependency 'SFHFKeychainUtils', '~> 0.0.1'
   s.dependency 'PocketAPI', '~> 1.0.2'
-  s.dependency 'AFXAuthClient', :git => 'https://github.com/alondon/AFXAuthClient.git', :commit => '2dd36e1d063028199021cfb23faa7ebc229f10d2'
+  s.dependency 'AFXAuthClient', '1.0.5'
 end
