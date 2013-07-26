@@ -35,13 +35,8 @@
         self.clipsToBounds = YES;
         _activities = activities;
         
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-            _backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, (IS_IPHONE_5)? 517 :417)];
-            _backgroundImageView.image = [UIImage imageNamed:@"REActivityViewController.bundle/Background"];
-            _backgroundImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-            [self addSubview:_backgroundImageView];
-        }
-    
+        self.backgroundColor = [UIColor colorWithWhite:0.97f alpha:1.0f];
+
         _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 39, frame.size.width, self.frame.size.height - 104)];
         _scrollView.showsHorizontalScrollIndicator = NO;
         _scrollView.showsVerticalScrollIndicator = NO;
@@ -89,14 +84,11 @@
             _scrollView.scrollEnabled = NO;
         }
         
-        _cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_cancelButton setBackgroundImage:[[UIImage imageNamed:@"REActivityViewController.bundle/Button"] stretchableImageWithLeftCapWidth:22 topCapHeight:47] forState:UIControlStateNormal];
+        _cancelButton = [[UIButton alloc] init];
         _cancelButton.frame = CGRectMake(22, 352, 276, 47);
         [_cancelButton setTitle:NSLocalizedStringFromTable(@"button.cancel", @"REActivityViewController", @"Cancel") forState:UIControlStateNormal];
-        [_cancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_cancelButton setTitleShadowColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.4] forState:UIControlStateNormal];
-        [_cancelButton.titleLabel setShadowOffset:CGSizeMake(0, -1)];
-        [_cancelButton.titleLabel setFont:[UIFont boldSystemFontOfSize:19]];
+        [_cancelButton setTitleColor:[UIColor colorWithRed:0.0f green:0.478431f blue:1.0f alpha:1.0f] forState:UIControlStateNormal];
+        [_cancelButton.titleLabel setFont:[UIFont systemFontOfSize:23]];
         [_cancelButton addTarget:self action:@selector(cancelButtonPressed) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_cancelButton];
     }
@@ -116,13 +108,11 @@
     [view addSubview:button];
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 59, 80, 30)];
-    label.textAlignment = UITextAlignmentCenter;
+    label.textAlignment = NSTextAlignmentCenter;
     label.backgroundColor = [UIColor clearColor];
-    label.textColor = [UIColor whiteColor];
-    label.shadowColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.75];
-    label.shadowOffset = CGSizeMake(0, 1);
+    label.textColor = [UIColor darkTextColor];
     label.text = activity.title;
-    label.font = [UIFont boldSystemFontOfSize:12];
+    label.font = [UIFont systemFontOfSize:11];
     label.numberOfLines = 0;
     [label setNumberOfLines:0];
     [label sizeToFit];
@@ -148,13 +138,13 @@
             scrollViewFrame.origin.y = 39;
             
             cancelButtonFrame.size.width = 276;
-            cancelButtonFrame.origin.y = self.frame.size.height - 47 - 16;
+            cancelButtonFrame.origin.y = self.frame.size.height - 47;
             cancelButtonFrame.origin.x = (self.frame.size.width - cancelButtonFrame.size.width) / 2.0f;
         } else {
             scrollViewFrame.origin.y = 29;
             
             cancelButtonFrame.size.width = 236;
-            cancelButtonFrame.origin.y = self.frame.size.height - 47 - 18;
+            cancelButtonFrame.origin.y = self.frame.size.height - 47;
             cancelButtonFrame.origin.x = (self.frame.size.width - cancelButtonFrame.size.width) / 2.0f;
         }
         
@@ -227,7 +217,7 @@
     } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         // For iPad
         CGRect frame = _cancelButton.frame;
-        frame.origin.y = self.frame.size.height - 47 - 16;
+        frame.origin.y = self.frame.size.height - 47;
         frame.origin.x = (self.frame.size.width - frame.size.width) / 2.0f;
         _cancelButton.frame = frame;
     }
